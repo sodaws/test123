@@ -28,4 +28,16 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello ${{ github.event.inputs.name }}"
-    
+  
+  test-runner-env:
+    runs-on: ubuntu-latest
+    steps:
+    - name: print env
+      run: printenv
+  test-container-env:
+    runs-on: ubuntu-latest
+    env:
+      test123: 123456
+    steps:
+    - name: print env
+      run: printenv
