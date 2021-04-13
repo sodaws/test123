@@ -36,8 +36,10 @@ jobs:
       run: printenv
   test-container-env:
     runs-on: ubuntu-latest
-    env:
-      test123: 123456
+    container:
+      image: curlimages/curl:latest
+      env:
+        test123: 123456
     steps:
     - name: print env
       run: printenv
