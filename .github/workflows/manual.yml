@@ -40,6 +40,7 @@ jobs:
       image: curlimages/curl:latest
       env:
         test123: 123456
+        TEST123: 1234567
     steps:
     - name: print env
       run: printenv
