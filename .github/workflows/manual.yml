@@ -1,19 +1,20 @@
-name: print container environment variables
-on: workflow_dispatch
+name: Manually triggered workflow
+on:
+  workflow_dispatch:
+    inputs:
+      input_1:
+        description: 'Person to greet'
+        required: true
+      input_2:
+        description: 'location'
+        required: true
+
 jobs:
-  test-container-env:
-    runs-on: self-hosted
-    container:
-      image: curlimages/curl:latest
-      env:
-        test123: 123456
-        http_proxy: http://host.docker.internal:xxxx
-        https_proxy: http://host.docker.internal:xxxx
-        HTTP_PROXY: http://host.docker.internal:xxxx
-        HTTPS_PROXY: http://host.docker.internal:xxxx
-      options: --add-host=host.docker.internal:host-gateway
+  say_hello:
+    runs-on: ubuntu-latest
     steps:
-    - name: print env
-      run: printenv
-    - name: curl google
-      run: curl google.com
+      - name: print inputs
+        if: ${{ github.event.inputs.input_1 }}
+        run: |
+          echo "${{ github.event.inputs.input_1 }}"
+          echo "${{ github.event.inputs.input_2 }}"
