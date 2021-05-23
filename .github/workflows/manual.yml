@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: print inputs
-        if: ${{ github.event.inputs.input_1 != 'no'}}
+        if: ${{ 'github.event.inputs.input_1' != 'no'}}
         run: |
           echo "${{ github.event.inputs.input_1 }}"
           echo "${{ github.event.inputs.input_2 }}"
